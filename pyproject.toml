@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ammfv"
+version = "0.1.0"
+description = "Adaptive multimodal fact verification with expert routing, heterogeneous graphs and multi-agent debate"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "torch>=2.2,<3", "transformers>=4.49,<5", "accelerate>=1.0,<2",
+  "numpy>=1.26,<3", "PyYAML>=6,<7", "Pillow>=10,<12",
+  "tqdm>=4.66,<5", "scikit-learn>=1.4,<2", "rouge-score>=0.1.2,<0.2",
+  "sacrebleu>=2.4,<3", "matplotlib>=3.8,<4", "networkx>=3.2,<4",
+  "sentencepiece>=0.2,<0.3", "safetensors>=0.4,<1", "protobuf>=4.25,<6",
+  "huggingface-hub>=0.27,<1"
+]
+
+[project.optional-dependencies]
+index = ["faiss-cpu>=1.8"]
+logging = ["tensorboard>=2.16"]
+quantization = ["bitsandbytes>=0.43"]
+
+[project.scripts]
+ammfv = "ammfv.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ammfv = ["agents/prompts/v1/*.txt"]

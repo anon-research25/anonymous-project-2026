@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fixed evidence acquisition record",
+  "type": "object",
+  "required": ["claim_id", "strategy", "evidence_ids"],
+  "properties": {
+    "claim_id": {"type": "string"},
+    "strategy": {"enum": ["S", "M", "C", "GOLD"]},
+    "evidence_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "scores": {"type": "object", "additionalProperties": {"type": "number"}},
+    "hops": {"type": "array", "items": {"type": "object"}},
+    "direct_prediction": {"type": ["object", "null"]}
+  }
+}

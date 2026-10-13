@@ -1,0 +1,32 @@
+# Canonical exported MOCHEG records; prepare-dataset also reads native release CSVs.
+dataset: mocheg
+label_mapping:
+  supported: SUPPORTED
+  refuted: REFUTED
+  nei: NOT_ENOUGH_INFO
+  NEI: NOT_ENOUGH_INFO
+  supports: SUPPORTED
+  refutes: REFUTED
+  SUPPORTED: SUPPORTED
+  REFUTED: REFUTED
+  NOT_ENOUGH_INFO: NOT_ENOUGH_INFO
+claims:
+  records_key: null
+  fields:
+    claim_id: claim_id
+    text: claim
+    label: label
+    gold_evidence_ids: evidence_ids
+    explanation: explanation
+corpus:
+  records_key: null
+  fields:
+    evidence_id: evidence_id
+    modality: modality
+    text: text
+    image_path: image_path
+    caption: caption
+    source:
+      url: url
+      title: title
+      published_at: published_at

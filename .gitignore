@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+build/
+dist/
+data/*
+!data/README.md
+checkpoints/*
+!checkpoints/README.md
+outputs/*
+!outputs/README.md
+.env
+*.pt
+*.npy
+*.index

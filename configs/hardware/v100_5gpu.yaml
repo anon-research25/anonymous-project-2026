@@ -1,0 +1,14 @@
+# Five-GPU placement: LLaVA, CLIP, BGE, graph and router occupy separate devices.
+extends: ../base.yaml
+llm:
+  device: cuda:0
+  dtype: float16
+encoders:
+  clip:
+    device: cuda:1
+  bge:
+    device: cuda:2
+graph:
+  device: cuda:3
+routing:
+  device: cuda:4

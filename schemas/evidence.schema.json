@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AMMFV observed evidence item",
+  "type": "object",
+  "required": ["evidence_id", "modality"],
+  "additionalProperties": false,
+  "properties": {
+    "evidence_id": {"type": "string", "minLength": 1, "not": {"pattern": "^CF:"}},
+    "modality": {"enum": ["text", "image"]},
+    "text": {"type": "string"},
+    "image_path": {"type": ["string", "null"]},
+    "caption": {"type": "string"},
+    "source": {"type": "object"}
+  },
+  "allOf": [
+    {"if": {"properties": {"modality": {"const": "text"}}},
+     "then": {"required": ["text"], "properties": {"text": {"minLength": 1}}}},
+    {"if": {"properties": {"modality": {"const": "image"}}},
+     "then": {"required": ["image_path"], "properties": {"image_path": {"type": "string", "minLength": 1}}}}
+  ]
+}

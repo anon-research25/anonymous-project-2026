@@ -1,0 +1,29 @@
+extends: ../base.yaml
+data:
+  dataset: cosmos
+  corpus: data/cosmos/corpus.jsonl
+  image_root: data/cosmos/images
+  claims:
+    train: data/cosmos/train.jsonl
+    validation: data/cosmos/validation.jsonl
+    test: data/cosmos/test.jsonl
+  features_dir: data/cosmos/features_gold
+retrieval:
+  index_dir: data/cosmos/indexes
+routing:
+  checkpoint: checkpoints/cosmos/router/best
+graph:
+  checkpoint: checkpoints/cosmos/graph/best.pt
+router_training:
+  output_dir: checkpoints/cosmos/router
+graph_training:
+  output_dir: checkpoints/cosmos/graph
+evaluation:
+  label_space: benchmark
+  classes: ["0", "1"]
+  output_mapping:
+    SUPPORTED: "0"
+    REFUTED: "1"
+  nei_policy: abstain_as_error
+output:
+  dir: outputs/cosmos/retrieved/full

@@ -1,0 +1,7 @@
+# Requires rebuilding indexes/features and retraining the graph/router.
+extends: ../base.yaml
+encoders:
+  clip:
+    model: openai/clip-vit-base-patch32
+graph:
+  input_dim: 512

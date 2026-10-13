@@ -1,0 +1,4 @@
+extends: ../base.yaml
+encoders:
+  bge:
+    model: BAAI/bge-base-en-v1.5

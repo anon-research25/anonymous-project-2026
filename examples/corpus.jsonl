@@ -1,0 +1,2 @@
+{"evidence_id":"fictional:inventory:A","modality":"text","text":"Fictional inventory note A: The box contains four red tokens.","image_path":null,"caption":"","source":{"fictional":true,"note_id":"A","purpose":"format_documentation_only"}}
+{"evidence_id":"fictional:inventory:B","modality":"text","text":"Fictional inventory note B: The box contains two red tokens and two blue tokens.","image_path":null,"caption":"","source":{"fictional":true,"note_id":"B","purpose":"format_documentation_only"}}

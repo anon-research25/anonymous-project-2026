@@ -1,0 +1,10 @@
+# The paper formulates this metric, but simplifies to ordinary cosine in practice.
+# Learnable metric architecture differs: train a separate graph checkpoint.
+extends: ../datasets/mocheg.yaml
+graph:
+  metric: weighted_cosine
+  checkpoint: checkpoints/mocheg/weighted_graph/best.pt
+graph_training:
+  output_dir: checkpoints/mocheg/weighted_graph
+output:
+  dir: outputs/mocheg/retrieved/weighted_metric

@@ -1,0 +1,203 @@
+# Complete project directory
+
+```text
+AMMFV/
+|-- assets/
+|   +-- framework.png
+|-- checkpoints/
+|   +-- README.md
+|-- configs/
+|   |-- ablations/
+|   |   |-- graph_unpruned.yaml
+|   |   |-- multi_step.yaml
+|   |   |-- no_adaptive.yaml
+|   |   |-- no_debate.yaml
+|   |   |-- no_graph.yaml
+|   |   |-- no_images.yaml
+|   |   |-- single_step.yaml
+|   |   +-- weighted_metric.yaml
+|   |-- adapters/
+|   |   |-- cosmos.yaml
+|   |   +-- mocheg.yaml
+|   |-- datasets/
+|   |   |-- cosmos.yaml
+|   |   +-- mocheg.yaml
+|   |-- experiments/
+|   |   |-- cosmos_gold.yaml
+|   |   |-- matrix.yaml
+|   |   +-- mocheg_gold.yaml
+|   |-- hardware/
+|   |   |-- cpu.yaml
+|   |   |-- quantized.yaml
+|   |   +-- v100_5gpu.yaml
+|   |-- models/
+|   |   |-- bge_base.yaml
+|   |   |-- clip_base.yaml
+|   |   |-- llava_mistral.yaml
+|   |   +-- llava_vicuna13b.yaml
+|   |-- sweeps/
+|   |   |-- agent_count.yaml
+|   |   +-- reference_size.yaml
+|   +-- base.yaml
+|-- data/
+|   +-- README.md
+|-- docs/
+|   |-- agents.md
+|   |-- api.md
+|   |-- assets.md
+|   |-- data_protocol.md
+|   |-- file_inventory.md
+|   |-- graph.md
+|   |-- implementation_decisions.md
+|   |-- outputs.md
+|   |-- paper_to_code.md
+|   |-- reproduction.md
+|   +-- usage.md
+|-- examples/
+|   |-- claims.jsonl
+|   |-- corpus.jsonl
+|   +-- README.md
+|-- outputs/
+|   +-- README.md
+|-- results/
+|   +-- reference/
+|       |-- debate_conflict.json
+|       |-- explanations.csv
+|       |-- main_results.csv
+|       +-- README.md
+|-- schemas/
+|   |-- acquisition.schema.json
+|   |-- claim.schema.json
+|   |-- counterfactual.schema.json
+|   |-- evidence.schema.json
+|   |-- prediction.schema.json
+|   +-- router_label.schema.json
+|-- scripts/
+|   |-- aggregate_runs.py
+|   |-- analyze_errors.py
+|   |-- analyze_router.py
+|   |-- chunk_corpus.py
+|   |-- collect_sweep.py
+|   |-- download_models.py
+|   |-- evaluate_graph_head.py
+|   |-- evaluate_mocheg.ps1
+|   |-- evaluate_mocheg.sh
+|   |-- export_acquisition.py
+|   |-- extract_frames.py
+|   |-- infer_distributed.sh
+|   |-- launch.py
+|   |-- run_pipeline.py
+|   |-- train_graph_distributed.sh
+|   |-- train_mocheg.ps1
+|   +-- train_mocheg.sh
+|-- src/
+|   +-- ammfv/
+|       |-- agents/
+|       |   |-- prompts/
+|       |   |   +-- v1/
+|       |   |       |-- aggregator.txt
+|       |   |       |-- common.txt
+|       |   |       |-- counterfactual.txt
+|       |   |       |-- direct.txt
+|       |   |       |-- evidence.txt
+|       |   |       |-- judge.txt
+|       |   |       |-- one_shot.txt
+|       |   |       |-- retrieval_planner.txt
+|       |   |       |-- rewriter.txt
+|       |   |       +-- standard.txt
+|       |   |-- __init__.py
+|       |   |-- aggregator.py
+|       |   |-- backend.py
+|       |   |-- confidence.py
+|       |   |-- contracts.py
+|       |   |-- convergence.py
+|       |   |-- counterfactual.py
+|       |   |-- debate.py
+|       |   |-- evidence.py
+|       |   |-- judge.py
+|       |   |-- rewriter.py
+|       |   |-- runner.py
+|       |   |-- serialization.py
+|       |   +-- standard.py
+|       |-- analysis/
+|       |   |-- __init__.py
+|       |   |-- bootstrap.py
+|       |   |-- error_cases.py
+|       |   |-- plots.py
+|       |   |-- routing.py
+|       |   |-- tables.py
+|       |   +-- traces.py
+|       |-- baselines/
+|       |   |-- __init__.py
+|       |   |-- external.py
+|       |   |-- llava.py
+|       |   +-- summarization.py
+|       |-- data/
+|       |   |-- __init__.py
+|       |   |-- adapters.py
+|       |   |-- benchmarks.py
+|       |   |-- corpus.py
+|       |   |-- dataset.py
+|       |   |-- features.py
+|       |   +-- preprocessing.py
+|       |-- encoders/
+|       |   |-- __init__.py
+|       |   |-- bge.py
+|       |   +-- clip.py
+|       |-- evaluation/
+|       |   |-- __init__.py
+|       |   |-- classification.py
+|       |   |-- debate.py
+|       |   |-- evaluator.py
+|       |   |-- explanations.py
+|       |   |-- labels.py
+|       |   +-- retrieval.py
+|       |-- graph/
+|       |   |-- __init__.py
+|       |   |-- construction.py
+|       |   |-- context.py
+|       |   |-- layers.py
+|       |   |-- metapaths.py
+|       |   |-- model.py
+|       |   |-- pruning.py
+|       |   +-- similarity.py
+|       |-- retrieval/
+|       |   |-- __init__.py
+|       |   |-- controller.py
+|       |   |-- experts.py
+|       |   |-- index.py
+|       |   +-- router.py
+|       |-- training/
+|       |   |-- __init__.py
+|       |   |-- graph_trainer.py
+|       |   |-- losses.py
+|       |   |-- router_labels.py
+|       |   |-- router_trainer.py
+|       |   +-- schedules.py
+|       |-- utils/
+|       |   |-- __init__.py
+|       |   |-- checkpoint.py
+|       |   |-- distributed.py
+|       |   |-- io.py
+|       |   |-- logging.py
+|       |   +-- reproducibility.py
+|       |-- __init__.py
+|       |-- __main__.py
+|       |-- cli.py
+|       |-- config.py
+|       |-- factory.py
+|       |-- inference.py
+|       |-- pipeline.py
+|       +-- schema.py
+|-- .gitattributes
+|-- .gitignore
+|-- CITATION.cff
+|-- CONTRIBUTING.md
+|-- LICENSE
+|-- PROJECT_TREE.md
+|-- PROJECT_TREE.txt
+|-- pyproject.toml
+|-- README.md
+|-- README.zh-CN.md
++-- requirements.txt
+```

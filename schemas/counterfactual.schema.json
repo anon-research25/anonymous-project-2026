@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Analytical hypothetical scenario; never an observed Evidence item",
+  "type": "object",
+  "required": ["scenario_id", "hypothetical", "original_premise", "assumed_change", "fixed_observations", "effect_on_judgment"],
+  "properties": {
+    "scenario_id": {"type": "string", "pattern": "^CF:"},
+    "hypothetical": {"const": true},
+    "original_premise": {"type": "string"},
+    "assumed_change": {"type": "string"},
+    "fixed_observations": {"type": "array", "items": {"type": "object"}},
+    "effect_on_judgment": {"type": "string"}
+  }
+}

@@ -1,0 +1,5 @@
+# Optional deployment variant, not a paper-reproduction default.
+extends: ../base.yaml
+llm:
+  load_in_4bit: true
+  device_map: auto

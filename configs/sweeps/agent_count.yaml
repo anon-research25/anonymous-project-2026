@@ -1,0 +1,8 @@
+base_config: configs/datasets/mocheg.yaml
+parameter: context.max_agents
+values: [1, 2, 3, 4, 5]
+evidence_modes: [retrieved, gold]
+seeds: [42]
+output_root: outputs/sweeps/agent_count
+overrides:
+  context.reference_size: 7

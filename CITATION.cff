@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "Please cite the AMMFV manuscript when using this software."
+title: "AMMFV: Adaptive Multi-modal Fact Verification via Expert Routing and Multi-Agent Debate"
+type: software
+version: 0.1.0
+license: MIT
+authors:
+  - name: "AMMFV implementation contributors"
+preferred-citation:
+  type: unpublished
+  title: "AMMFV: Adaptive Multi-modal Fact Verification via Expert Routing and Multi-Agent Debate"
+  authors:
+    - family-names: Jia
+      given-names: Haoran
+    - family-names: Li
+      given-names: Chaozhuo
+    - family-names: Zhang
+      given-names: Litian
+    - family-names: Zheng
+      given-names: Liwen
+    - family-names: Pang
+      given-names: Hui
+    - family-names: Hei
+      given-names: Yiming
+    - family-names: Zhang
+      given-names: Xi

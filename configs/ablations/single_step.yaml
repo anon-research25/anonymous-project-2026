@@ -1,0 +1,6 @@
+extends: ../datasets/mocheg.yaml
+routing:
+  adaptive: false
+  fixed_strategy: M
+output:
+  dir: outputs/mocheg/retrieved/single_step

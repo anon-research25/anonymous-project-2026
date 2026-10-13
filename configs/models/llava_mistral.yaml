@@ -1,0 +1,3 @@
+extends: ../base.yaml
+llm:
+  model: llava-hf/llava-v1.6-mistral-7b-hf

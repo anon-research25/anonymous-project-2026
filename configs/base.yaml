@@ -1,0 +1,139 @@
+# AMMFV default configuration. Dataset, model and hardware profiles inherit these values.
+seed: 42
+deterministic: false
+data:
+  dataset: mocheg
+  split: test
+  corpus: data/mocheg/corpus.jsonl
+  image_root: data/mocheg/images
+  claims:
+    train: data/mocheg/train.jsonl
+    validation: data/mocheg/validation.jsonl
+    test: data/mocheg/test.jsonl
+  features_dir: data/mocheg/features_gold
+encoders:
+  clip:
+    model: openai/clip-vit-large-patch14  # PAPER: ViT-L/14
+    revision: main                    # Pin to a commit for published experiments.
+    device: cpu
+    batch_size: 32
+    max_length: 77                     # PAPER
+    image_size: 224                    # PAPER
+  bge:
+    model: BAAI/bge-large-en-v1.5       # Normalized BGE passage/query embeddings.
+    revision: main
+    device: cpu
+    batch_size: 32
+    max_length: 512
+    query_prefix: "Represent this sentence for searching relevant passages: "
+llm:
+  model: llava-hf/llava-v1.6-mistral-7b-hf  # PAPER backbone; HF checkpoint representation.
+  revision: main
+  device: cuda:0
+  device_map: null
+  dtype: float16
+  load_in_4bit: false                  # Enable NF4 quantization when using quantization dependencies.
+  do_sample: false                    # PAPER
+  temperature: 0                     # PAPER: omitted in greedy generate() to avoid sampling flags.
+  max_new_tokens: 768
+  context_tokens: 32768
+agents:
+  prompt_version: v1
+  evidence_text_tokens: 320           # Separate from CLIP's 77-token encoder truncation.
+  caption_tokens: 100
+  format_retries: 2
+  cache_dir: outputs/generation_cache
+routing:
+  adaptive: true
+  fixed_strategy: M
+  checkpoint: checkpoints/mocheg/router/best
+  device: cpu
+  max_length: 256
+  gold_policy: bypass                 # Gold evidence enters the graph directly.
+retrieval:
+  evidence_mode: retrieved
+  use_images: true
+  index_dir: data/mocheg/indexes
+  index_backend: numpy                # Optional faiss exact inner-product backend.
+  text_k: 8
+  image_k: 4
+  max_hops: 3
+  queries_per_hop: 2
+  max_evidence: 32
+  planner_context_size: 7             # Recent evidence supplied to the multi-hop planner.
+graph:
+  enabled: true
+  checkpoint: checkpoints/mocheg/graph/best.pt
+  device: cuda:0
+  input_dim: 768                      # ViT-L/14 projection dimension.
+  hidden_dim: 256
+  layers: 2
+  dropout: 0.1
+  metric: cosine                     # PAPER practical simplification.
+  heads: 4
+  epsilon: 0.2
+  neighbors: 4
+  temperature: 1.0
+  meta_paths:
+    - [claim, text]
+    - [claim, image]
+    - [text, claim]
+    - [image, claim]
+    - [text, text]
+    - [text, image]
+    - [image, text]
+    - [image, image]
+    - [claim, text, image]
+    - [claim, image, text]
+context:
+  reference_size: 7
+  max_agents: null                    # Default: one independent assessment for every reference item.
+  max_graph_depth: 3
+debate:
+  enabled: true
+  max_rounds: 3
+  critique_exchanges: 1               # Each exchange has independent drafts and reciprocal refinement.
+  confidence: none                   # Optional agreement score is descriptive, not calibrated.
+router_training:
+  model: microsoft/deberta-v3-base    # Three-class S/M/C sequence classifier.
+  revision: main
+  output_dir: checkpoints/mocheg/router
+  max_length: 256
+  epochs: 3
+  batch_size: 16
+  accumulation_steps: 1
+  learning_rate: 0.00002
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  held_out_fraction: 0.1              # Holdout from generated TRAIN labels only.
+  precision: float32
+  workers: 0
+  logging_steps: 20
+graph_training:
+  output_dir: checkpoints/mocheg/graph
+  device: cuda
+  epochs: 20
+  batch_size: 16
+  accumulation_steps: 1
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  max_grad_norm: 1.0
+  precision: float32
+  min_temperature: 0.3
+  temperature_decay: 0.95
+  workers: 0
+  logging_steps: 20
+  tensorboard: false
+evaluation:
+  label_space: canonical
+  classes: [SUPPORTED, REFUTED, NOT_ENOUGH_INFO]
+  output_mapping: {}
+  nei_policy: error
+  averaging: macro                   # Equal weighting across evaluation classes.
+  rouge_stemmer: true
+  bleu_tokenizer: 13a
+output:
+  dir: outputs/mocheg/retrieved/full
+  save_traces: true
+  fail_fast: false

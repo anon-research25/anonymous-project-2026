@@ -1,0 +1,7 @@
+# Large t retains all original edges within max_evidence; scorer receives no
+# effective structural selection supervision when every eligible edge is kept.
+extends: ../datasets/mocheg.yaml
+graph:
+  neighbors: 32
+output:
+  dir: outputs/mocheg/retrieved/graph_unpruned

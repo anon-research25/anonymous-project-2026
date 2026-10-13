@@ -1,0 +1,7 @@
+extends: ../datasets/cosmos.yaml
+retrieval:
+  evidence_mode: gold
+routing:
+  gold_policy: bypass
+output:
+  dir: outputs/cosmos/gold/full

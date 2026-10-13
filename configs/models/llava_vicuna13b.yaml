@@ -1,0 +1,13 @@
+# Backbone transfer experiment, not the paper's reported Mistral-7B setting.
+extends: ../base.yaml
+llm:
+  model: llava-hf/llava-v1.6-vicuna-13b-hf
+  context_tokens: 4096
+  max_new_tokens: 512
+agents:
+  evidence_text_tokens: 128
+  caption_tokens: 64
+context:
+  reference_size: 1
+retrieval:
+  planner_context_size: 1

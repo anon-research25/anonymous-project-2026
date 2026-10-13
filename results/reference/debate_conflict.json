@@ -1,0 +1,12 @@
+{
+  "status": "manuscript_reported",
+  "source": "bare_jrnl.tex, debate conflict table",
+  "dataset": "MOCHEG",
+  "split": "test",
+  "evidence_mode": "retrieved",
+  "groups": {
+    "non_conflicting": {"n": 1600, "pre_LA_percent_rounded": 73.9, "post_LA_percent_rounded": 74.4, "corrected": 24, "harmed": 16, "delta_LA_pp_rounded": 0.5},
+    "conflicting": {"n": 842, "pre_LA_percent_rounded": 34.8, "post_LA_percent_rounded": 42.2, "corrected": 94, "harmed": 32, "delta_LA_pp_rounded": 7.4}
+  },
+  "note": "No per-claim prediction/trace evidence was supplied; these are not reproduced measurements."
+}

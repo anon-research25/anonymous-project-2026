@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AMMFV final prediction record",
+  "type": "object",
+  "required": ["claim_id", "status", "verdict"],
+  "properties": {
+    "claim_id": {"type": "string"},
+    "status": {"enum": ["ok", "failed", "missing"]},
+    "verdict": {"enum": ["SUPPORTED", "REFUTED", "NOT_ENOUGH_INFO", null]},
+    "explanation": {"type": "string"},
+    "strategy": {"type": "string"},
+    "evidence_ids": {"type": "array", "items": {"type": "string"}},
+    "pre_debate_verdict": {"enum": ["SUPPORTED", "REFUTED", "NOT_ENOUGH_INFO", null]},
+    "initial_assessments": {"type": "array", "items": {"type": "object"}},
+    "debate_invoked": {"type": "boolean"},
+    "rounds": {"type": "integer", "minimum": 0},
+    "termination_reason": {"type": "string"},
+    "consensus_reached": {"type": "boolean"},
+    "epistemic_mode": {"enum": ["evidence_grounded", "parametric_non_retrieval"]},
+    "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "trace_path": {"type": ["string", "null"]},
+    "elapsed_seconds": {"type": "number", "minimum": 0},
+    "error_type": {"type": "string"},
+    "error": {"type": "string"}
+  },
+  "allOf": [
+    {"if": {"properties": {"status": {"const": "ok"}}},
+     "then": {"properties": {"verdict": {"enum": ["SUPPORTED", "REFUTED", "NOT_ENOUGH_INFO"]}}}},
+    {"if": {"properties": {"status": {"enum": ["failed", "missing"]}}},
+     "then": {"properties": {"verdict": {"const": null}}}}
+  ]
+}

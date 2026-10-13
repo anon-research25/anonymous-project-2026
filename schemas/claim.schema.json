@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AMMFV canonical claim",
+  "type": "object",
+  "required": ["claim_id", "text", "split", "dataset"],
+  "additionalProperties": false,
+  "properties": {
+    "claim_id": {"type": "string", "minLength": 1},
+    "text": {"type": "string", "minLength": 1},
+    "split": {"enum": ["train", "validation", "test", "unlabeled"]},
+    "dataset": {"type": "string"},
+    "label": {"enum": ["SUPPORTED", "REFUTED", "NOT_ENOUGH_INFO", null]},
+    "gold_evidence_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "explanation": {"type": ["string", "null"]},
+    "benchmark_label": {"type": ["string", "null"]},
+    "metadata": {"type": "object"}
+  }
+}

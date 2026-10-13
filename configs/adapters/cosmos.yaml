@@ -1,0 +1,26 @@
+# Paired-caption context classification: 0 is compatible, 1 is out of context.
+dataset: cosmos
+label_mapping:
+  "0": SUPPORTED
+  "1": REFUTED
+  not-ooc: SUPPORTED
+  ooc: REFUTED
+  consistent: SUPPORTED
+  inconsistent: REFUTED
+claims:
+  records_key: null
+  fields:
+    claim_id: claim_id
+    text: claim
+    label: label
+    gold_evidence_ids: evidence_ids
+    explanation: null
+corpus:
+  records_key: null
+  fields:
+    evidence_id: evidence_id
+    modality: modality
+    text: text
+    image_path: image_path
+    caption: caption
+    source: {}

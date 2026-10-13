@@ -1,0 +1,5 @@
+extends: ../datasets/mocheg.yaml
+retrieval:
+  use_images: false
+output:
+  dir: outputs/mocheg/retrieved/no_images

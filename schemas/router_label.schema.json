@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Training-only operational strategy supervision",
+  "type": "object",
+  "required": ["claim_id", "text", "split", "strategy_label", "gold_label", "predictions", "all_strategies_failed"],
+  "properties": {
+    "claim_id": {"type": "string"},
+    "text": {"type": "string"},
+    "split": {"const": "train"},
+    "strategy_label": {"enum": ["S", "M", "C"]},
+    "gold_label": {"enum": ["SUPPORTED", "REFUTED", "NOT_ENOUGH_INFO"]},
+    "predictions": {
+      "type": "object", "required": ["S", "M", "C"], "additionalProperties": false,
+      "properties": {
+        "S": {"enum": ["SUPPORTED", "REFUTED", "NOT_ENOUGH_INFO"]},
+        "M": {"enum": ["SUPPORTED", "REFUTED", "NOT_ENOUGH_INFO"]},
+        "C": {"enum": ["SUPPORTED", "REFUTED", "NOT_ENOUGH_INFO"]}
+      }
+    },
+    "all_strategies_failed": {"type": "boolean"},
+    "trace_paths": {"type": "object"}
+  }
+}

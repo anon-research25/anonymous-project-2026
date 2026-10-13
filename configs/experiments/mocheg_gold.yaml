@@ -1,0 +1,7 @@
+extends: ../datasets/mocheg.yaml
+retrieval:
+  evidence_mode: gold
+routing:
+  gold_policy: bypass
+output:
+  dir: outputs/mocheg/gold/full

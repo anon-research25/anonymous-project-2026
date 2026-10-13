@@ -1,0 +1,5 @@
+extends: ../datasets/mocheg.yaml
+debate:
+  enabled: false
+output:
+  dir: outputs/mocheg/retrieved/no_debate
